@@ -1,0 +1,96 @@
+﻿@model CricketData.Models.ViewModels.CountriesViewModel
+@using CricketData.Models.ViewModels
+@{
+    Layout = null;
+   
+    CricketData.Models.ViewModels.CustomerViewModel currentCustomer = ViewBag.Customer;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Countries</title>
+</head>
+<body>
+    <style>
+        header {
+            font-size: 200%;
+            padding: 2.5em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+       signed {
+            font-family:Arial;
+            font-size: 80%;
+            position: absolute;
+            top: 110px;
+            right: 16px;
+        }
+        topright {
+            font-size: 160%;
+            position: absolute ;
+            font-family:Arial;
+            top: 220px;
+            right: 16px;
+            
+        }
+        body {
+            background-color: steelblue;
+        }
+        h2 {
+            font-family: Arial;
+            font-size: 150%;
+            text-align: center;
+            
+        }
+
+        
+    </style>
+
+        <div>
+            <header>
+                 Cricket Players Statistics 
+            </header>
+    @{
+<br /><br />
+
+    foreach (CountryViewModel countryViewModel in Model.Countries)
+    {
+        <h2>
+            
+    @Html.ActionLink(countryViewModel.Name, "Country", "Home", new { countryID = countryViewModel.Id }, new { style = "color: black"})
+
+        </h2>
+    }
+        <br />
+        if (currentCustomer == null)
+        {
+            
+                <topright>
+                    @Html.ActionLink("Login", "Login", "Home",null ,new { style= "color:black" })
+                </topright>
+            
+        }
+        else
+        {
+            
+                <signed>
+               
+                    Logged in as @currentCustomer.FirstName @currentCustomer.LastName
+                
+                    </signed>
+            
+        }
+
+    }
+            <br /><br /><br />
+           
+
+    </div>
+</body>
+
+</html>

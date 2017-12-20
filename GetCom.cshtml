@@ -1,0 +1,60 @@
+﻿
+
+@model IEnumerable<CricketData.Models.ViewModels.CommentViewModel>
+@{
+    Layout = null;
+    CricketData.Models.ViewModels.CustomerViewModel currentCustomer = ViewBag.Customer;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GetCom</title>
+
+    <style>
+        body {
+            background-color: steelblue;
+        }
+        topright {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+            h1 {
+            color: white;
+            text-align:center;
+            font-size: 100%;
+            font-family: Arial;
+        }
+
+        section {
+            background: black;
+            color: red;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+</head>
+<body>
+    <section>
+
+        <h1> COMMENTS </h1>
+        @foreach (var coment in Model)
+        {
+
+
+            <h1>
+         @@ @Html.DisplayFor(x => coment.customername) @@
+            <br />
+            @Html.DisplayFor(x => coment.comment)
+            </h1>
+        }
+        @Html.ActionLink("Home", "Countries", "Home", null, new { style = "color:lightcoral" })
+    </section>
+</body>
+</html>

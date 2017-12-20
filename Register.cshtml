@@ -1,0 +1,72 @@
+﻿@model CricketData.Models.ViewModels.CustomerViewModel
+@using CricketData.Models.ViewModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <style>
+        body {
+            background-color: steelblue;
+        }
+        h2 {
+            font-family: Arial;
+            font-size: 100%;
+            text-align: center;
+        }
+
+        section {
+            background: black;
+            color: white;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+
+</head>
+<body>
+    <section>
+        <div>
+            <h2>
+                <p> <font color:white>REGISTER </font></p>
+            </h2>
+            <br />
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label>Your first name:</label>
+                    @Html.TextBoxFor(x => x.FirstName, new { @class = "form-control" })
+                </div><br />
+                <div class="form-group">
+                    <label>Your last name:</label>
+                    @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+                </div><br />
+                <div class="form-group">
+                    <label>Your email:</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </div><br />
+                <div class="form-group">
+                    <label>Password:</label>
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+                </div><br />
+
+                <div class="text-center">
+                    <input class="btn btn-success" type="submit" value=" Create" />
+                </div><br />
+                    }
+                    @Html.ActionLink("Main Page", "Countries", "Home",null, new { style= "color: lightcoral" })
+                </div>
+    </section>
+</body>
+</html>

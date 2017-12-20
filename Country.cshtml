@@ -1,0 +1,93 @@
+﻿@model CricketData.Models.ViewModels.CountryViewModel
+@using CricketData.Models.ViewModels
+@{
+    Layout = null;
+    CricketData.Models.ViewModels.CustomerViewModel currentCustomer = ViewBag.Customer;
+} 
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@Model.Name</title>
+</head>
+<body><style>
+    header {
+        font-size: 200%;
+        padding: 1em;
+        color: white;
+        background-color: black;
+        clear: left;
+        text-align: center;
+    }
+
+    topright {
+        font-size: 80%;
+        position: absolute;
+        top: 110px;
+        right: 16px;
+       
+    }
+
+    body {
+        background-color: steelblue;
+    }
+
+    h2 {
+        font-family: Arial;
+        font-size: 150%;
+        text-align: center;
+    }
+    h1{
+        font-family: Arial;
+        font-size:120%;
+        text-align: center;
+    }
+    img {
+        display: block;
+        margin: 0 auto;  
+    }
+</style>
+
+
+
+    <div><header>
+    @Model.Name</header>
+    @{
+<br /><br />
+        foreach (PlayerViewModel playerViewModel in Model.Players)
+        {
+            <h2>
+                <p>
+                    @Html.ActionLink(playerViewModel.Name, "Player", "Home",
+                    new { playerID = playerViewModel.Id }, new{ style = "color: black" })
+                </p>
+            </h2>
+        }
+        if (currentCustomer == null)
+        {
+            <h2>
+                @Html.ActionLink("Login", "Login", "Home");
+            </h2>
+        }
+        else
+        {
+            <h2>
+                <topright>
+                    <p>
+                        
+                            Logged in as @currentCustomer.FirstName @currentCustomer.LastName
+                        
+                </topright>
+            </h2>
+        }
+    }
+    <br /> 
+        <h2>
+            @Html.ActionLink("<-- GO BACK", "Countries", "Home", null, new { style = "color:black"})
+        </h2>
+        <p><img src="@Model.photo" /></p> 
+     </div>
+</body>
+</html>

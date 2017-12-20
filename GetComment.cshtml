@@ -1,0 +1,84 @@
+﻿
+@model CricketData.Models.ViewModels.CommentViewModel
+@using CricketData.Models.ViewModels
+@{
+    Layout = null;
+
+   CricketData.Models.ViewModels.CustomerViewModel currentCustomer = ViewBag.Customer;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Comment</title>
+    
+    <style>
+        body {
+            background-color: steelblue;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 100%;
+            font-family: Arial;
+        }
+        div {
+            color: white;
+            font-size: 100%;
+            font-family: Arial;
+        }
+
+        section {
+            background: black;
+            color: red;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+        .wide {
+            width: 400px
+            
+        }
+
+        topright {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            font-size: 18px;
+        }
+    </style>
+    
+
+</head>
+<body>
+    <section>
+        
+        @using (Html.BeginForm())
+        {
+            
+                <h1> THROW COMMENT </h1>
+                <br /><br />
+                @Html.ValidationSummary()
+                <div class="form-group">
+                    <label> Your Comment : </label>
+                    @Html.TextBoxFor(x => x.comment, new { @class = "wide", @maxlength= "500"})
+                </div>
+                <br />
+                <div class="text-center">
+                    <input class="btn btn-success" type="submit" value=" Comment" />
+                </div>
+                }
+                <br />
+
+                
+                @Html.ActionLink("Players", "Players", "Home", null, new { style = "color:lightcoral" })
+    
+    </section>
+</body>
+</html>

@@ -1,0 +1,85 @@
+﻿@model CricketData.Models.ViewModels.PlayerViewModel
+@using CricketData.Models.ViewModels
+
+@{
+    Layout = null;
+    CricketData.Models.ViewModels.CustomerViewModel loggedInUser = ViewBag.Customer;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ModifyPlayer @Model.Name</title>
+    <style>
+        body {
+            background-color: steelblue;
+        }
+
+        h1 {
+            text-align:center;
+            color: white;
+            font-size: 100%;
+        }
+
+        section {
+            background: black;
+            color: white;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div>
+            @using (Html.BeginForm("ModifyPlayer", "Home", FormMethod.Post))
+            {
+                @Html.ValidationSummary()
+                @Html.HiddenFor(x => x.Id);
+                <h1> Update @Model.Name </h1>
+                <br />
+    <div class="form-group">
+        <label>Player Name:</label>
+        @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Photo URL:</label>
+        @Html.TextBoxFor(x => x.Photo, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label>Description:</label>
+        @Html.TextBoxFor(x => x.Description, new { @class = "form-control" })
+    </div>
+    <br />
+    <div class="form-group">
+        <label>years:</label>
+        @Html.TextBoxFor(x => x.years, new { @class = "form-control" })
+    </div>
+    <br />
+    @for (int i = 0; i < Model.AllCountries.Count; i++)
+                {
+        <div>
+            <label>@Model.AllCountries.ElementAt(i)</label>
+            @Html.CheckBoxFor(m => m.SelectedCountries[i], new { @checked = "checked" })
+        </div>
+    }
+    <br />
+    <div class="text-center">
+        <input class="btn btn-success" type="submit" value="Save Changes" />
+    </div>
+    }
+
+        </div>
+    </section>
+</body>
+</html>

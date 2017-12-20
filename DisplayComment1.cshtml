@@ -1,0 +1,17 @@
+﻿@model IEnumerable<CricketData.Models.ViewModels.CommentViewModel>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DisplayComment1</title>
+    
+</head>
+<body>
+   
+   @foreach (var coment in Model)
+   {
+
+      @Html.DisplayFor(x => coment.comment) 
+
+   }
+</body>
+</html>

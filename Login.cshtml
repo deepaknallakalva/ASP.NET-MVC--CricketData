@@ -1,0 +1,74 @@
+﻿@model CricketData.Models.ViewModels.LoginViewModel
+@using CricketData.Models.ViewModels
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+
+    <style>
+        body {
+            background-color: steelblue;
+        }
+        h1{
+            font-size: 100%;
+            color: white;
+            text-align:center;
+        }
+
+        section {
+            background: black;
+            color: white;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+    <script>
+        function relocate()
+        {
+            location.href = "http://localhost:58598/Home/Countries";
+
+        }
+    </script>
+
+</head>
+<body>
+    <section>
+        <div><h1>
+                LOGIN
+        </h1>
+            @using (Html.BeginForm())
+            {
+                @Html.ValidationSummary()
+                <br />
+                <div class="form-group">
+                    <label>E-mail:</label>
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>Password:</label>
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control" })
+                </div>
+                <br />
+                <div class="text-center">
+                    <input class="btn btn-success" type="submit" value=" Login " onclick="relocate()"/>
+                </div>
+            }
+            <br />
+
+            @Html.ActionLink("Don't have account? Create! ", "Register", "Home",null ,new { style = "color: lightcoral" })
+        </div>
+    </section>
+</body>
+</html>

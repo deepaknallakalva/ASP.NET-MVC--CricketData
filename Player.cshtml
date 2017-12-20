@@ -1,0 +1,118 @@
+﻿@model CricketData.Models.ViewModels.PlayerViewModel
+@using CricketData.Models.ViewModels
+@{
+    Layout = null;
+    CricketData.Models.ViewModels.CustomerViewModel currentCustomer = ViewBag.Customer;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Player</title>
+</head>
+<body>
+    <style>
+        header {
+            font-size: 200%;
+            padding: 1em;
+            color: white;
+            background-color: black;
+            clear: left;
+            text-align: center;
+        }
+
+        topright {
+            font-size: 80%;
+            position: absolute;
+            top: 20px;
+            right: 16px;
+        }
+
+        body {
+            background-color: steelblue;
+        }
+
+        h2 {
+            font-family: Arial;
+            font-size: 150%;
+            
+        }
+
+        h1 {
+            font-family: Arial;
+            font-size: 150%;
+            
+        }
+
+        img {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+
+
+
+    <br /><br />
+    <br /><br />
+    <div><h2>
+    <p>Name: @Model.Name</p>
+    <p>Description: @Model.Description</p>
+    <p>Years Played: @Model.years</p>
+
+    </h2>
+        <br />
+    @{ 
+        foreach (CountryViewModel countryViewModel in Model.Countries)
+        {
+        
+        <h1>
+            @Html.ActionLink(countryViewModel.Name, "Country", "Home", new { countryID = countryViewModel.Id }, new { style = "color:black" })
+        </h1>
+        }
+        if (currentCustomer == null)
+        {
+            @Html.ActionLink("Login", "Login", "Home");
+            }
+            else
+            {
+            <h1>
+                <topright>
+
+                        
+                        Logged in as @currentCustomer.FirstName @currentCustomer.LastName
+                    <br />
+                    @if (currentCustomer.PrivilegeId == 1)
+                    {
+                        @Html.ActionLink("Edit Player", "ModifyPlayer", "Home", new { playerID = Model.Id }, new { style = "color: black" })
+                    }
+
+
+
+        
+                </topright>
+            </h1>
+            <br />
+            <br />
+
+            @if (currentCustomer.PrivilegeId == 3)
+            {
+                <h1>
+                @Html.ActionLink(" Comment ", "GetComment", "Home", new { playerID = Model.Id,customerID=currentCustomer.Id }, new { style = "color:lightcoral" })
+                </h1>
+                    }
+            <br />
+            <br />
+            <h1>
+                @Html.ActionLink(" View Commments ", "GetCom", "Home", new { playerID = Model.Id }, new { style = "color:lightcoral" })
+
+            </h1>
+        }
+    }    
+        <p><img src="@Model.Photo" /></p> 
+
+        
+    </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model CricketData.Models.ViewModels.LoginViewModel
+@{
+    Layout = null;
+
+    CricketData.Models.ViewModels.CustomerViewModel loggedInUser = ViewBag.Customer;  
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    <style>
+        body {
+            background-color: steelblue;
+        }
+
+        section {
+            background: black;
+            color: white;
+            border-radius: 1em;
+            padding: 1em;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+    </style>
+
+</head>
+<body>
+    <section>
+        <div>
+            <p>First Name: @loggedInUser.FirstName</p>
+            <p>Last Name: @loggedInUser.LastName</p>
+        </div>
+        @Html.ActionLink("Main Page", "Countries", "Home", null, new { style = "color:lightcoral" })
+    </section>
+   
+</body>
+</html>
